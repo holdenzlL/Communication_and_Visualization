@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>report.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<!-- TOC -->
+<ul>
+<li><a href="#0-notes">0 Notes</a></li>
+<li><a href="#1-tasks-for-an-http-client">1 Tasks for an HTTP client</a></li>
+<li><a href="#2-code-explanation">2 Code explanation</a>
+<ul>
+<li><a href="#initialization">Initialization</a></li>
+<li><a href="#parsing-urls">Parsing URLs</a></li>
+<li><a href="#create-a-socket-and-connect-to-the-server">create a socket and connect to the server</a></li>
+<li><a href="#send-request">send request</a></li>
+<li><a href="#receive-packet">receive packet</a></li>
+<li><a href="#postprocessor">postprocessor</a>
+<ul>
+<li><a href="#header-extractor">header extractor</a></li>
+</ul>
+</li>
+<li><a href="#second-part-of-the-postprocessor">second part of the postprocessor</a></li>
+</ul>
+</li>
+<li><a href="#test-program">Test program</a></li>
+</ul>
+<!-- /TOC -->
+<h1 id="0-notes">0 Notes</h1>
+<ol>
+<li>I tried to modify the code provided by the professor, but I modified too much, and I am very interested in this topic, so I decided to rewrite almost everything and enclose them as a library for later use</li>
+<li>The code is designed to be able to run on both Windows and UNIX/LINUX systems because when coding, the Winsock and Berkely socket interface are both considered. However, since the programming is done on windows, it hasn't been tried on UNIX/LINUX. So the portability can not be 100% guaranteed, but I will try.</li>
+<li>One library called &quot;str.h&quot; is from the lecture &quot;Advanced programming&quot; because I have written too much code for processing character strings in C language when I am learning. So this time, I want to do it once and for all. &quot;str.h&quot; is a library for dynamically managing the character string. Since the warmup assignment is not mandatory, the development process is not in a hurry.</li>
+</ol>
+<h1 id="1-tasks-for-an-http-client">1 Tasks for an HTTP client</h1>
+<p>By analyzing the professor's code and doing some research (also studying the source code of wget), I found that the tasks for an HTTP client to download a file remains the same.
+0. Initialization (only for Winsock)</p>
+<ol>
+<li>Parsing a URL</li>
+<li>create a socket and connect to the server</li>
+<li>Fabricate a request and send it to the server (normally, it is GET)</li>
+<li>Receive response</li>
+<li>Extract the Body from the response based on the Header, this can be done via postprocessor real-time process (process the data and receive the packets at the same time, specifically for chunked data)</li>
+<li>Clean up the socket, only for Winsock</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/holdenzlL/myIHS/main/images/20220406001541.png" alt="20220406001541"></p>
+<h1 id="2-code-explanation">2 Code explanation</h1>
+<p>For each step shown in section 1, I enveloped functions to realize them with the hope that I can maintain them and use them conveniently in the future.</p>
+<h2 id="initialization">Initialization</h2>
+<p>This step is done by function ALLinitialization(); but the initialization is specifically for Microsoft Visual C compiler.</p>
+<p><img src="https://raw.githubusercontent.com/holdenzlL/myIHS/main/images/20220406001612.png" alt="20220406001612"></p>
+<h2 id="parsing-urls">Parsing URLs</h2>
+<p>This step is done by function URL parse_url(str_p url_origin); since processing URL is another separated library in wget, so I also separate this function into an isolated source file. The parsed URL is stored in a struct. To parse a url, the function will try to find &quot;<img class="emoji" alt="confused" src="data:image/png;base64,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" />/&quot; first to separate the protocol and the rest part. If <img class="emoji" alt="confused" src="data:image/png;base64,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" />/ is not found, then the protocol will be set to HTTP as the default value. Then the function will try to find : for the port, and / for the site, and # for the end of parsing.</p>
+<p><img src="https://raw.githubusercontent.com/holdenzlL/myIHS/main/images/20220406001637.png" alt="20220406001637"></p>
+<h2 id="create-a-socket-and-connect-to-the-server">create a socket and connect to the server</h2>
+<p>This step is done by the function connect2server. This function request the URL struct as the input, and if the connection is constructed, the socket will be returned.
+To switch the IPV4 and IPV6 address conveniently in the later, getaddrinfo is used to configure the server info. And to set the time out, the function setsockopt is used. Users can use the Macro _MAX_WAITING_TIME_PER_PACKET to set the timeout of receiving one packet. Since the recv() function is blocking, it is necessary to set the time out.</p>
+<p><img src="https://raw.githubusercontent.com/holdenzlL/myIHS/main/images/20220406001718.png" alt="20220406001718"></p>
+<h2 id="send-request">send request</h2>
+<p>A request is fabricated and sent by the function send_request. So far, this function only supports sending the easiest request with the command GET.</p>
+<p><img src="https://raw.githubusercontent.com/holdenzlL/myIHS/main/images/20220406001751.png" alt="20220406001751"></p>
+<h2 id="receive-packet">receive packet</h2>
+<p>In this program, I use postprocessing to deal with the body and Header of the HTTP response, which means all the response packets will be received and stored in a temporary file. After the receiving part is finished, the function postProcessor(&amp;data, saveFP); will do the post-process the extract the body.
+For receiving part, it is done by function recv_response(SOCKET _socket); this function requires the socket as the input and it will return a struct called datapack. In this struct, a file pointer fp is used for operating the temporary file in which all the packet data is stored. This struct also provides information such as headersize, bodysize, headerposition and bodyposition for file handling, and it also has an important bool value &quot;ifchunked&quot; which is important for postprocessing.</p>
+<h2 id="postprocessor">postprocessor</h2>
+<p>Postprocessing, including extract information from the header and extracting file from body, is done by function postProcessor(datapack* data, FILE* downloadpath). This function takes the datapack struct as the input, and it also takes a file pointer for saving the extracted body.</p>
+<h3 id="header-extractor">header extractor</h3>
+<p>The function headerExtractor reads in the temporary file line by line, trying to find the blank line, which is the indicator of the separation of the Header from the body. It also tries to read in the first line, the state line, get the HTTP protocol version and the state code. Then the header extractor will also try to find two headers, Transfer-Encoding and Content-Length. If the header Content-Length is found, then the data in the body is not truncated, so the postprocessor will simply save the body without further process. If the transfer-encoding: chunked is detected, then the headerextractor will set the ifChunked flag for the postprocessor.</p>
+<p><img src="https://raw.githubusercontent.com/holdenzlL/myIHS/main/images/20220406001840.png" alt="20220406001840"></p>
+<h2 id="second-part-of-the-postprocessor">second part of the postprocessor</h2>
+<p>The second part of the postprocessor is used to extract the body from the raw data. it first checks if the ifChunked flag is set or not. If the flag is set, then the received data is chunked. It will read the size of the fragment and move the file pointer to process the data.</p>
+<p><img src="https://raw.githubusercontent.com/holdenzlL/myIHS/main/images/20220406001912.png" alt="20220406001912"></p>
+<h1 id="test-program">Test program</h1>
+<p>In the Macro, there is a _DEBUG_MODE switch, by opening the switch, there will be more output for printing.</p>
+<p><img src="https://raw.githubusercontent.com/holdenzlL/myIHS/main/images/20220406002043.png" alt="20220406002043"></p>
+<p>For this test, I choose a picture of Prof. Dr. Westermann on his HTTP webpage <img class="emoji" alt="smiley" src="data:image/png;base64,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" /> And the download path is also specified
+<img src="https://raw.githubusercontent.com/holdenzlL/myIHS/main/images/20220406002217.png" alt="20220406002217">
+<img src="https://raw.githubusercontent.com/holdenzlL/myIHS/main/images/20220406002227.png" alt="20220406002227"></p>
+<p>I am not programming an user interface, because I want it to be a general library.</p>
+<p>Then, by running the program, we can see the result.</p>
+<p><img src="https://raw.githubusercontent.com/holdenzlL/myIHS/main/images/20220406002521.png" alt="20220406002521"></p>
+<p>And a file is also saved</p>
+<p><img src="https://raw.githubusercontent.com/holdenzlL/myIHS/main/images/20220406002600.png" alt="20220406002600"></p>
+
+</body>
+</html>
